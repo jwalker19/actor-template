@@ -47,4 +47,12 @@ public abstract class JsonHandlingActor extends BaseActor{
             reasons.add(reason);
         }
     }
+
+    public static boolean equals(JsonNode json1, JsonNode json2){
+        return json1.toString().equalsIgnoreCase(json2.toString());
+    }
+
+    public static boolean equals(JsonNode jsonNode, String jsonString){
+        return jsonNode.toString().equalsIgnoreCase(jsonString);
+    }
 }

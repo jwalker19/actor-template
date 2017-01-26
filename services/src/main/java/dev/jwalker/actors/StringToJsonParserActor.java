@@ -21,6 +21,8 @@ public class StringToJsonParserActor extends JsonHandlingActor{
             StringToJson request = (StringToJson)message;
             try{
                 JsonNode resultBody = objectMapper.readTree(request.payload);
+                StringToJsonResult result = new StringToJsonResult(request);
+                result.setPayload(resultBody);
             }catch(Exception e){
                 log.error(e, "Encountered error while attempting to parse payload: " + request.payload);
                 JsonHandlingActor.StringToJsonResponse result = new JsonHandlingActor.StringToJsonResponse(e.getMessage());
@@ -31,8 +33,8 @@ public class StringToJsonParserActor extends JsonHandlingActor{
     public static class StringToJson extends BaseRequestMessage<String>{
         public final String payload;
 
-        public StringToJson(String payload){
-            super(UUID.randomUUID().toString(), "text/plain");
+        public StringToJson(String id, String payload){
+            super(id, "text/plain");
             this.payload = payload;
         }
 

@@ -33,6 +33,8 @@ public class JsonToStringParserActor extends JsonHandlingActor{
     }
 
     public static class JsonToStringResponse extends BaseResponseMessage<String>{
-
+        public JsonToStringResponse(BaseRequestMessage requestMessage){
+            super(requestMessage.id);
+        }
     }
 }
